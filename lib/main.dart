@@ -97,72 +97,70 @@ class _MyAppState extends State<MyApp> {
         padding: const EdgeInsets.all(8),
         itemCount: _item_count,
         itemBuilder: (BuildContext context, int index) {
-          return Container(
-            width: double.infinity,
-            height: 200, // Adjust height as per your design
-            child: Stack(
-              fit: StackFit.expand,
-              children: [
-                // Background Image
-                Image.asset(
-                  "assets/industry.jpg",
-                  fit: BoxFit.cover,
-                ),
-                // Gradient Overlay
-                Container(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [mycolor_1, mycolor_2, mycolor_3, mycolor_4],
+          return IntrinsicHeight(  // Add this
+            child: Container(
+              // width: double.infinity,
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  Image.asset(
+                    "assets/industry.jpg",
+                    fit: BoxFit.fitHeight,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [mycolor_1, mycolor_2, mycolor_3, mycolor_4],
+                      ),
                     ),
                   ),
-                ),
-                // Content
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        headlines[index],
-                        style: TextStyle(
-                          fontSize: 24,
-                          color: Colors.white,
-                          fontFamily: 'semplicita',
-                          fontWeight: FontWeight.bold,
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          headlines[index],
+                          style: TextStyle(
+                            fontSize: 24,
+                            color: Colors.white,
+                            fontFamily: 'semplicita',
+                            fontWeight: FontWeight.bold,
+                          ),
+                          softWrap: true,
                         ),
-                      ),
-                      SizedBox(height: 10.0),
-                      Row(
-                        children: [
-                          Text(
-                            resources[index],
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.white,
-                              fontFamily: 'P22_FLLW_Exhibition',
-                              fontWeight: FontWeight.normal,
+                        SizedBox(height: 10.0),
+                        Row(
+                          children: [
+                            Text(
+                              resources[index],
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Colors.white,
+                                fontFamily: 'P22_FLLW_Exhibition',
+                                fontWeight: FontWeight.normal,
+                              ),
                             ),
-                          ),
-                          Spacer(),
-                          Text(
-                            // dateAndTime[index],
-                            // published_minute[index].length == 2 ? '${published_minute[index]}': '0${published_minute[index]}';
-                            '${published_hour[index].length == 2 ? '${published_hour[index]}': '0${published_hour[index]}'}.${published_minute[index].length == 2 ? '${published_minute[index]}': '0${published_minute[index]}'} | ${published_date[index]} ${published_month[index]}',
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.white,
-                              fontFamily: 'Bd_colonius',
-                              fontWeight: FontWeight.normal,
+                            Spacer(),
+                            Text(
+                              '${published_hour[index].length == 2 ? '${published_hour[index]}' : '0${published_hour[index]}'}.${published_minute[index].length == 2 ? '${published_minute[index]}' : '0${published_minute[index]}'} | ${published_date[index]} ${published_month[index]}',
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Colors.white,
+                                fontFamily: 'Bd_colonius',
+                                fontWeight: FontWeight.normal,
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           );
         },
