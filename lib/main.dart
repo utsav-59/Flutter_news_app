@@ -94,72 +94,69 @@ class _MyAppState extends State<MyApp> {
     return Directionality(
       textDirection: TextDirection.ltr,
       child: ListView.builder(
-        padding: const EdgeInsets.all(8),
         itemCount: _item_count,
         itemBuilder: (BuildContext context, int index) {
-          return IntrinsicHeight(  // Add this
+          return Container(
+            width: double.infinity,
             child: Container(
-              // width: double.infinity,
-              child: Stack(
-                fit: StackFit.expand,
-                children: [
-                  Image.asset(
-                    "assets/industry.jpg",
-                    fit: BoxFit.fitHeight,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/industry.jpg"),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [mycolor_1, mycolor_2, mycolor_3, mycolor_4],
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [mycolor_1, mycolor_2, mycolor_3, mycolor_4],
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      SizedBox(height: 50,),
+                      Text(
+                        headlines[index],
+                        style: TextStyle(
+                          fontSize: 24,
+                          color: Colors.white,
+                          fontFamily: 'semplicita',
+                          fontWeight: FontWeight.bold,
+                        ),
+                        softWrap: true,
                       ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          headlines[index],
-                          style: TextStyle(
-                            fontSize: 24,
-                            color: Colors.white,
-                            fontFamily: 'semplicita',
-                            fontWeight: FontWeight.bold,
+                      SizedBox(height: 10.0),
+                      Row(
+                        children: [
+                          Text(
+                            resources[index],
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.white,
+                              fontFamily: 'P22_FLLW_Exhibition',
+                              fontWeight: FontWeight.normal,
+                            ),
                           ),
-                          softWrap: true,
-                        ),
-                        SizedBox(height: 10.0),
-                        Row(
-                          children: [
-                            Text(
-                              resources[index],
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: Colors.white,
-                                fontFamily: 'P22_FLLW_Exhibition',
-                                fontWeight: FontWeight.normal,
-                              ),
+                          Spacer(),
+                          Text(
+                            '${published_hour[index].length == 2 ? '${published_hour[index]}' : '0${published_hour[index]}'}.${published_minute[index].length == 2 ? '${published_minute[index]}' : '0${published_minute[index]}'} | ${published_date[index]} ${published_month[index]}',
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.white,
+                              fontFamily: 'Bd_colonius',
+                              fontWeight: FontWeight.normal,
                             ),
-                            Spacer(),
-                            Text(
-                              '${published_hour[index].length == 2 ? '${published_hour[index]}' : '0${published_hour[index]}'}.${published_minute[index].length == 2 ? '${published_minute[index]}' : '0${published_minute[index]}'} | ${published_date[index]} ${published_month[index]}',
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: Colors.white,
-                                fontFamily: 'Bd_colonius',
-                                fontWeight: FontWeight.normal,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
             ),
           );
